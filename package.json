@@ -21,9 +21,20 @@
     "umi-plugin-react": "^1.1.1"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "antd": "latest",
+    "antd-mobile": "latest",
+    "dva": "latest",
+    "react": "latest",
+    "react-amap": "^1.2.7",
+    "react-dom": "latest"
   }
 }

@@ -4,34 +4,34 @@ import { Map } from 'react-amap';
 import { connect } from 'dva';
 
 
-// class UIMarker extends React.Component {
-//   constructor(props){
-//     super(props);
-//     this.map = props.__map__;
-//     this.loadUI();
-//   }
-//
-//   loadUI(){
-//     window.AMapUI.loadUI(['overlay/SimpleMarker'], SimpleMarker => {
-//       new SimpleMarker({
-//         iconLabel: {
-//           innerHTML: '<div class="my-blue-point"><img src="//webapi.amap.com/theme/v1.3/hotNew.png"/></div>'
-//         },
-//         iconStyle: 'black',
-//         map: this.map,
-//         position: [120, 30]
-//       });
-//     });
-//   }
-//
-//   render(){
-//     return null;
-//   }
-// }
-//
-// const MyMap = <Map useAMapUI center={[120, 30]}>
-//                 <UIMarker/>
-//               </Map>;
+class UIMarker extends React.Component {
+  constructor(props){
+    super(props);
+    this.map = props.__map__;
+    this.loadUI();
+  }
+
+  loadUI(){
+    window.AMapUI.loadUI(['overlay/SimpleMarker'], SimpleMarker => {
+      new SimpleMarker({
+        iconLabel: {
+          innerHTML: '<div class="my-blue-point"><img src="//webapi.amap.com/theme/v1.3/hotNew.png"/></div>'
+        },
+        iconStyle: 'black',
+        map: this.map,
+        position: [120, 30]
+      });
+    });
+  }
+
+  render(){
+    return null;
+  }
+}
+
+const MyMap = <Map useAMapUI center={[120, 30]}>
+                <UIMarker/>
+              </Map>;
 
 
 class TabBarExample extends React.Component {
@@ -45,36 +45,28 @@ class TabBarExample extends React.Component {
 
   renderContent(pageText) {
     return (
-      <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-        <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-        {/*<a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}*/}
-           {/*onClick={(e) => {*/}
-             {/*e.preventDefault();*/}
-             {/*this.setState({*/}
-               {/*hidden: !this.state.hidden,*/}
-             {/*});*/}
-           {/*}}*/}
-        {/*>*/}
-          {/*Click to show/hide tab-bar*/}
-        {/*</a>*/}
-        <MyMap />
-        <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-           // onClick={(e) => {
-           //   e.preventDefault();
-           //   this.setState({
-           //     fullScreen: !this.state.fullScreen,
-           //   });
-           // }}
+
+    <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
+      {/*<MyMap />*/}
+      <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
+        <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
+            onClick={(e) => {
+            e.preventDefault();
+            this.setState({
+            hidden: !this.state.hidden,
+            });
+            }}
         >
-          Click to switch fullscreen
+          Click to show/hide tab-bar
         </a>
-      </div>
+    </div>
     );
   }
 
   render() {
     return (
       <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
+        {/*<MyMap />*/}
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"

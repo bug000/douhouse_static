@@ -33,6 +33,7 @@
     "antd": "latest",
     "antd-mobile": "latest",
     "dva": "latest",
+    "jquery": "^3.3.1",
     "react": "latest",
     "react-amap": "^1.2.7",
     "react-dom": "latest"

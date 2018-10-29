@@ -268,7 +268,9 @@ class MapApp extends React.Component{
       </div>
       <div>
         {/*<p>{this.state.houseShow["title"]}</p>*/}
-        <a href={this.state.houseShow.id}>{this.state.houseShow.title}</a>
+        <hr/>
+        <a href={this.state.houseShow.id} target="_blank">{this.state.houseShow.title}</a>
+        <hr/>
         {/*<HouseMessDiv props={this.state.houseShow}/>*/}
       </div>
       {/*<button onClick={ () => { this.toggleCluster() } }> Toggle Cluster</button>*/}

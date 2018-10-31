@@ -1,180 +1,52 @@
-import { TabBar } from 'antd-mobile';
-import React from 'react';
-import { Map } from 'react-amap';
-import { connect } from 'dva';
+import * as React from 'react';
+import { Drawer, List, NavBar, Icon } from 'antd-mobile';
 
+// const { Drawer, List, NavBar, Icon } = window["antd-mobile"];
 
-class UIMarker extends React.Component {
-  constructor(props){
-    super(props);
-    this.map = props.__map__;
-    this.loadUI();
+class App1 extends React.Component {
+  state = {
+    open: true,
   }
-
-  loadUI(){
-    window.AMapUI.loadUI(['overlay/SimpleMarker'], SimpleMarker => {
-      new SimpleMarker({
-        iconLabel: {
-          innerHTML: '<div class="my-blue-point"><img src="//webapi.amap.com/theme/v1.3/hotNew.png"/></div>'
-        },
-        iconStyle: 'black',
-        map: this.map,
-        position: [120, 30]
-      });
-    });
+  onOpenChange = (...args) => {
+    console.log(args);
+    this.setState({ open: !this.state.open });
   }
-
-  render(){
-    return null;
-  }
-}
-
-const MyMap = <Map useAMapUI center={[120, 30]}>
-                <UIMarker/>
-              </Map>;
-
-
-class TabBarExample extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedTab: 'redTab',
-      hidden: false
-    };
-  }
-
-  renderContent(pageText) {
-    return (
-
-    <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-      {/*<MyMap />*/}
-      <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-        <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-            onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-            hidden: !this.state.hidden,
-            });
-            }}
-        >
-          Click to show/hide tab-bar
-        </a>
-    </div>
-    );
-  }
-
   render() {
-    return (
-      <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
-        {/*<MyMap />*/}
-        <TabBar
-          unselectedTintColor="#949494"
-          tintColor="#33A3F4"
-          barTintColor="white"
-          hidden={this.state.hidden}
-        >
-          <TabBar.Item
-            title="Life"
-            key="Life"
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selected={this.state.selectedTab === 'blueTab'}
-            badge={1}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'blueTab',
-              });
-            }}
-            data-seed="logId"
-          >
-            {this.renderContent('Life')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="Koubei"
-            key="Koubei"
-            badge={'new'}
-            selected={this.state.selectedTab === 'redTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'redTab',
-              });
-            }}
-            data-seed="logId1"
-          >
-            {this.renderContent('Koubei')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="Friend"
-            key="Friend"
-            dot
-            selected={this.state.selectedTab === 'greenTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'greenTab',
-              });
-            }}
-          >
-            {this.renderContent('Friend')}
-          </TabBar.Item>
-          <TabBar.Item
-            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-            title="My"
-            key="my"
-            selected={this.state.selectedTab === 'yellowTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: 'yellowTab',
-              });
-            }}
-          >
-            {this.renderContent('My')}
-          </TabBar.Item>
-        </TabBar>
-      </div>
-    );
+    // fix in codepen
+    const sidebar = (<List>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i, index) => {
+        if (index === 0) {
+          return (<List.Item key={index}
+                             thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+                             multipleLine
+          >Category</List.Item>);
+        }
+        return (<List.Item key={index}
+                           thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+        >Category{index}</List.Item>);
+      })}
+    </List>);
+
+    return (<div>
+      <NavBar icon={<Icon type="ellipsis" />} onLeftClick={this.onOpenChange}>Basic</NavBar>
+      <Drawer
+        className="my-drawer"
+        style={{ minHeight: document.documentElement.clientHeight }}
+        enableDragHandle
+        contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
+        sidebar={sidebar}
+        open={this.state.open}
+        onOpenChange={this.onOpenChange}
+      >
+        Click upper-left corner
+      </Drawer>
+    </div>);
   }
 }
 
-export default connect(({ products }) => ({
-  products,
-}))(TabBarExample);
 
+export default function() {
+  return (
+    <App1 />
+  );
+}
